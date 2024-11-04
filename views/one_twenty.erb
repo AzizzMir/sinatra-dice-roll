@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+  <title>Dice Roll</title>
+</head>
+<body>
+
+  <h1>1d20</h1>
+  <ul>
+    <% @rolls.each do |a_roll|%>
+      <% if a_roll == 1 %>
+        <li style="color: red"><%= a_roll %></li>
+      <% elsif a_roll == 20 %>
+        <li style="color: green"><%= a_roll %></li>
+      <% else %>
+        <li><%= a_roll %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</body>
+
+</html>

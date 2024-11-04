@@ -9,75 +9,61 @@ BetterErrors.application_root = __dir__
 BetterErrors::Middleware.allow_ip!('0.0.0.0/0.0.0.0')
 
 get '/' do
-  File.read('static/index.html')
+  #File.read('static/index.html')
+  erb(:index)
 end
 
 get "/dice/2/6" do
-  first_die = rand(1..6)
-  second_die = rand(1..6)
-  original = File.read('static/2d6.html')
-  added =
-  "
-  <h1>2d6</h1>
-  <ul>
-    <li>#{first_die}</li>
-    <li>#{second_die}</li>
-  </ul>
-  "
+  @rolls = []
 
-  return original + added
+  2.times do
+    die = rand(1..6)
+    @rolls.push(die)
+  end
+
+  erb(:two_six)
 end
 
 get "/dice/2/10" do
-  first_die = rand(1..10)
-  second_die = rand(1..10)
-  original = File.read('static/2d10.html')
-  added =
-  "
-  <h1>2d10</h1>
-  <ul>
-    <li>#{first_die}</li>
-    <li>#{second_die}</li>
-  </ul>
-  "
+  @rolls = []
 
-  return original + added
+  2.times do
+    die = rand(1..10)
+    @rolls.push(die)
+  end
+  erb(:two_ten)
 end
 
 get "/dice/1/20" do
-  first_die = rand(1..20)
-  original = File.read('static/1d20.html')
-  added =
-  "
-  <h1>1d20</h1>
-  <ul>
-    <li>#{first_die}</li>
-  </ul>
-  "
+  @rolls = []
 
-  return original + added
+  1.times do
+    die = rand(1..20)
+    @rolls.push(die)
+  end
+
+  erb(:one_twenty)
 end
 
 get "/dice/5/4" do
-  first_die = rand(1..4)
-  second_die = rand(1..4)
-  third_die = rand(1..4)
-  forth_die = rand(1..4)
-  fifth_die = rand(1..4)
+  @rolls = []
 
-  original = File.read('static/1d20.html')
-  added =
-  "
-  <h1>5d4</h1>
-  <ul>
-    <li>#{first_die}</li>
-    <li>#{second_die}</li>
-    <li>#{third_die}</li>
-    <li>#{forth_die}</li>
-    <li>#{fifth_die}</li>
-  </ul>
-  "
+  5.times do
+    die = rand(1..4)
+    @rolls.push(die)
+  end
+  
+  erb(:five_four)
+end
 
-  return original + added
+get "/dice/100/6" do
+  @rolls = []
 
+  100.times do
+    die = rand(1..6)
+
+    @rolls.push(die)
+  end
+
+  erb(:one_hundered_six)
 end
